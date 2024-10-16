@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const user_controller_1 = require("../controllers/user.controller");
+const userRouter = express_1.default.Router();
+userRouter.route('/login').post((req, res) => new user_controller_1.UserController().login(req, res));
+userRouter.route('/registruj').post((req, res) => new user_controller_1.UserController().registruj(req, res));
+userRouter.route('/dohvatiKorisnikaZaUsername').post((req, res) => new user_controller_1.UserController().dohvatiKorisnikaZaUsername(req, res));
+userRouter.route('/dohvatiKorisnikaZaEmail').post((req, res) => new user_controller_1.UserController().dohvatiKorisnikaZaEmail(req, res));
+userRouter.route('/promLozinkuZaEmail').post((req, res) => new user_controller_1.UserController().promLozinkuZaEmail(req, res));
+userRouter.route('/dohvatiTuriste_I_Vlasnike').post((req, res) => new user_controller_1.UserController().dohvatiTuriste_I_Vlasnike(req, res));
+userRouter.route('/promeniStatusKorisniku').post((req, res) => new user_controller_1.UserController().promeniStatusKorisniku(req, res));
+userRouter.route('/promeniIme').post((req, res) => new user_controller_1.UserController().promeniIme(req, res));
+userRouter.route('/promeniPrezime').post((req, res) => new user_controller_1.UserController().promeniPrezime(req, res));
+userRouter.route('/promeniKontaktTelefon').post((req, res) => new user_controller_1.UserController().promeniKontaktTelefon(req, res));
+userRouter.route('/promeniEmail').post((req, res) => new user_controller_1.UserController().promeniEmail(req, res));
+userRouter.route('/promeniKorisnickoIme').post((req, res) => new user_controller_1.UserController().promeniKorisnickoIme(req, res));
+exports.default = userRouter;
