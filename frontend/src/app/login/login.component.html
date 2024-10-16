@@ -1,0 +1,67 @@
+<div style="text-align: center; margin-top: 20px;">
+  <h2>Login</h2>
+  <div class="form-group" style="max-width: 300px; margin: auto;">
+    <label for="username">Username:</label>
+    <input id="username" type="text" [(ngModel)]="username" class="form-control">
+  </div>
+
+  <div class="form-group" style="max-width: 300px; margin: auto;">
+    <label for="password">Password:</label>
+    <input id="password" type="password" [(ngModel)]="password" class="form-control">
+  </div>
+
+  <br/>
+
+  <button class="btn btn-primary" (click)="login()">Login</button>
+
+  <br/><br/>
+
+  <a routerLink="/registracija"><h3>Kliknite ovde za registraciju</h3></a>
+  <br/>
+  <a routerLink="/resetLozinke"><h3>Zaboravili ste lozinku?</h3></a>
+</div>
+
+
+
+<div style="width: 50%; margin: auto; margin-top: 40px;">
+  <h1>Neke od naših ponuda:</h1>
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button *ngFor="let smestaj of sviSmestajiSaSlikom.slice(1, 6); let i = index"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        [attr.data-bs-slide-to]="i + 1"
+        [attr.aria-label]="'Slide ' + (i + 2)">
+      </button>
+    </div>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active" *ngIf="sviSmestajiSaSlikom.length > 0">
+        <img [src]="sanitizedImageUrl(sviSmestajiSaSlikom[0].slika)" style="height: 50vh; object-fit: cover;" class="d-block w-100" alt="{{ sviSmestajiSaSlikom[0].smestaj.nazivSmestaja }}" (click)="pogledajPonuduNeregistrovan(sviSmestajiSaSlikom[0].smestaj)">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ sviSmestajiSaSlikom[0].smestaj.nazivSmestaja }}</h5>
+          <p>{{ sviSmestajiSaSlikom[0].smestaj.opisSmestaja | slice:0:100 }}...</p>
+        </div>
+      </div>
+
+      <div class="carousel-item" *ngFor="let smestaj of sviSmestajiSaSlikom.slice(1, 6); let i = index">
+        <img [src]="sanitizedImageUrl(smestaj.slika)" style="height: 50vh; object-fit: cover;" class="d-block w-100" alt="{{ smestaj.smestaj.nazivSmestaja }}" (click)="pogledajPonuduNeregistrovan(smestaj.smestaj)">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ smestaj.smestaj.nazivSmestaja }}</h5>
+          <p>{{ smestaj.smestaj.opisSmestaja | slice:0:100 }}...</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>

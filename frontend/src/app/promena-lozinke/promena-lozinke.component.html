@@ -1,0 +1,16 @@
+<div style="text-align: center; margin-top: 20px;">
+  <button (click)="logout()" class="btn btn-secondary">Logout</button>
+  <br><br>
+
+  <div class="form-group" style="max-width: 500px; margin: auto;">
+    <label for="staraLozinka">Unesi staru lozinku:</label>
+    <input id="staraLozinka" type="password" [(ngModel)]="staraLozinka" class="form-control">
+  </div>
+
+  <div class="form-group" style="max-width: 500px; margin: auto;">
+    <label for="novaLozinka">Unesi novu lozinku:</label>
+    <input id="novaLozinka" type="password" [(ngModel)]="novaLozinka" (ngModelChange)="proveriLozinku()" class="form-control">
+  </div>
+
+  <button (click)="promeniLozinku()" class="btn btn-primary">Promeni lozinku</button>
+</div>

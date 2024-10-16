@@ -1,0 +1,84 @@
+<div class="button-group">
+  <button class="btn btn-primary" (click)="logout()">Logout</button>
+</div>
+
+<br>
+
+<div class="form-group">
+  <label>Za smeštaj:</label> {{preporuka.nazivSmestaja}}
+</div>
+
+<div class="form-group">
+  <label>Naziv preporuke:</label>
+  <input type="text" [(ngModel)]="nazivPreporukeUpdate" class="form-control">
+</div>
+
+<div class="form-group">
+  <label>Opis preporuke:</label>
+  <textarea [(ngModel)]="opisPreporukeUpdate" class="form-control"></textarea>
+</div>
+
+<div class="form-group">
+  <label>Tip preporuke:</label>
+  <input type="text" [(ngModel)]="tipUpdate" class="form-control">
+</div>
+
+<div class="button-group">
+  <button class="btn btn-success" (click)="sacuvaj(nazivPreporukeUpdate,opisPreporukeUpdate,tipUpdate)">Sačuvaj izmenu za naziv, opis i tip</button>
+  <button class="btn btn-danger" (click)="izbrisiPreporuku()">Izbriši preporuku</button>
+</div>
+
+<br><br>
+
+<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+
+  <!-- Prva kolona: Lokacija -->
+  <div style="width: 40%;">
+    <h3>Lokacija:</h3> <!-- Naslov za mapu -->
+    <div id="map" style="height: 55vh; width: 100%;"></div>
+  </div>
+
+  <!-- Druga kolona: Prikaz podataka o smeštaju (opcionalno) -->
+  <div *ngIf="preporuka?.nazivSmestaja" style="width: 25%;">
+    <!-- kod za prikaz preporuke -->
+  </div>
+
+  <!-- Treća kolona: Carousel za slike preporuka -->
+  <div style="width: 50%;">
+    <h3>Slike preporuke:</h3> <!-- Naslov za carousel -->
+    <div *ngIf="slikeFajlovi?.length > 0">
+      <!-- Carousel kod -->
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button *ngFor="let slika of slikeFajlovi; let i = index"
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  [attr.data-bs-slide-to]="i"
+                  [class.active]="i === 0"
+                  [attr.aria-label]="'Slide ' + (i + 1)">
+          </button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item position-relative" *ngFor="let slika of slikeFajlovi; let i = index" [class.active]="i === 0">
+            <img [src]="sanitizedImageUrl(slika)" style="height: 50vh; object-fit: cover;" class="d-block w-100">
+            <!-- Delete button positioned in the center of the image -->
+            <button (click)="deleteImage(slika.name)"
+                    class="btn btn-danger position-absolute translate-middle"
+                    style="top: 50%; left: 50%;">
+              Obriši
+            </button>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Prethodna</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Sledeća</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,81 @@
+<div class="button-group">
+  <button (click)="logout()">Logout</button>
+  <button (click)="promeniLozinku()">Promena lozinke</button>
+  <button (click)="promeniPodatke()">Promena podataka</button>
+</div>
+
+<br>
+
+<div style="font-size: 18px; margin-bottom: 15px;">Svi korisnici:</div>
+
+<table class="table">
+  <tr>
+    <th></th>
+    <th>
+      Po imenu:
+      <input type="text" [(ngModel)]="filterIme" (ngModelChange)="filter_turiste_i_vlasnike()">
+    </th>
+    <th>
+      Po prezimenu:
+      <input type="text" [(ngModel)]="filterPrezime" (ngModelChange)="filter_turiste_i_vlasnike()">
+    </th>
+    <th>
+      Po tipu naloga:
+      <input type="text" [(ngModel)]="filterTip" (ngModelChange)="filter_turiste_i_vlasnike()">
+    </th>
+    <th>
+      Po statusu:
+      <input type="text" [(ngModel)]="filterStatus" (ngModelChange)="filter_turiste_i_vlasnike()">
+    </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <th>Korisničko ime</th>
+    <th>
+      Ime
+      <button (click)="sortDesc1()">\/</button>
+      <button (click)="sortAsc1()">/\</button>
+    </th>
+    <th>
+      Prezime
+      <button (click)="sortDesc2()">\/</button>
+      <button (click)="sortAsc2()">/\</button>
+    </th>
+    <th>
+      Tip
+      <button (click)="sortDesc3()">\/</button>
+      <button (click)="sortAsc3()">/\</button>
+    </th>
+    <th>
+      Status
+      <button (click)="sortDesc4()">\/</button>
+      <button (click)="sortAsc4()">/\</button>
+    </th>
+    <th>Email</th>
+    <th>Aktiviraj</th>
+    <th>Deaktiviraj</th>
+    <th>Detaljan pregled</th>
+  </tr>
+
+  <tr *ngFor="let n of turisti_i_vlasnici_MENJANI">
+    <td>{{n.korisnickoIme}}</td>
+    <td>{{n.ime}}</td>
+    <td>{{n.prezime}}</td>
+    <td>{{n.tip}}</td>
+    <td>{{n.status}}</td>
+    <td>{{n.email}}</td>
+    <td>
+      <button class="btn btn-danger" (click)="aktiviraj(n.korisnickoIme,n.status,n.email)">Aktiviraj</button>
+    </td>
+    <td>
+      <button class="btn btn-warning" (click)="deaktiviraj(n.korisnickoIme,n.status,n.email)">Deaktiviraj</button>
+    </td>
+    <td>
+      <button class="btn btn-warning" (click)="detaljanPregled(n.korisnickoIme,n.tip)">Detaljan pregled</button>
+    </td>
+  </tr>
+</table>
