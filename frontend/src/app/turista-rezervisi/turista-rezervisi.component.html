@@ -1,0 +1,67 @@
+<button (click)="logout()" class="btn">logout</button>
+<br>
+<div class="smestaj-details"><h2>
+  <p>Naziv smestaja: {{smestaj.nazivSmestaja}}</p>
+  <p>Opis smestaja: {{smestaj.opisSmestaja}}</p>
+  <p>Drzava: {{smestaj.drzava}}</p>
+  <p>Grad: {{smestaj.grad}}</p>
+  <p>Kontakt: {{vlasnik.email}}</p></h2>
+</div>
+
+<div class="map-and-carousel">
+  <div id="map" class="map"></div>
+
+  <div *ngIf="smestaj?.nazivSmestaja">
+    <!-- kod za prikaz smeštaja -->
+  </div>
+
+  <div *ngIf="slikeFajlovi?.length > 0" class="carousel-container">
+    <!-- Carousel kod -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button *ngFor="let slika of slikeFajlovi; let i = index"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          [attr.data-bs-slide-to]="i"
+          [class.active]="i === 0"
+          [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item position-relative" *ngFor="let slika of slikeFajlovi; let i = index" [class.active]="i === 0">
+          <img [src]="sanitizedImageUrl(slika)" class="d-block w-100 carousel-image">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<br/><br/>
+<br/><br/>
+<form class="date-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Datum od</mat-label>
+    <input matInput [matDatepicker]="pickerOd" [(ngModel)]="datumOd" name="datumOd" [matDatepickerFilter]="filterOd">
+    <mat-datepicker-toggle matSuffix [for]="pickerOd"></mat-datepicker-toggle>
+    <mat-datepicker #pickerOd></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Datum do</mat-label>
+    <input matInput [matDatepicker]="pickerDo" [(ngModel)]="datumDo" name="datumDo" [matDatepickerFilter]="filterDo">
+    <mat-datepicker-toggle matSuffix [for]="pickerDo"></mat-datepicker-toggle>
+    <mat-datepicker #pickerDo></mat-datepicker>
+  </mat-form-field>
+</form>
+
+<button class="btn btn-danger" (click)="rezervisi()">Rezerviši</button>
+
+

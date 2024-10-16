@@ -1,0 +1,61 @@
+<div style="text-align: center; margin-top: 20px;">
+  <h2>Forma za registraciju</h2>
+
+  <div style="max-width: 500px; margin: auto;">
+    <form (ngSubmit)="register()">
+      <div class="form-group">
+        <label for="usernameReg">Korisničko ime:</label>
+        <input id="usernameReg" type="text" [(ngModel)]="usernameReg" (ngModelChange)="proveriKorIme()" name="usernameReg" class="form-control">
+        <output class="error">{{errorUsername}}</output>
+      </div>
+
+      <div class="form-group">
+        <label for="passwordReg">Lozinka:</label>
+        <input id="passwordReg" type="password" [(ngModel)]="passwordReg" (ngModelChange)="proveriLozinkuConf()" (ngModelChange)="proveriLozinku()" name="passwordReg" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="passwordRegConf">Potvrda lozinke:</label>
+        <input id="passwordRegConf" type="password" [(ngModel)]="passwordRegConf" (ngModelChange)="proveriLozinkuConf()" name="passwordRegConf" class="form-control">
+        <output class="error">{{errorPasswordConf}}</output>
+      </div>
+
+      <div class="form-group">
+        <label for="nameReg">Ime:</label>
+        <input id="nameReg" type="text" [(ngModel)]="nameReg" name="nameReg" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="secnameReg">Prezime:</label>
+        <input id="secnameReg" type="text" [(ngModel)]="secnameReg" name="secnameReg" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="phoneReg">Kontakt telefon:</label>
+        <input id="phoneReg" type="text" [(ngModel)]="phoneReg" name="phoneReg" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="emailReg">e-mail adresa:</label>
+        <input id="emailReg" type="email" [(ngModel)]="emailReg" (ngModelChange)="proveriEmail()" name="emailReg" class="form-control">
+        <output class="error">{{errorEmail}}</output>
+      </div>
+
+      <div class="form-group">
+        <label>Tip:</label><br>
+        <label>
+          <input type="radio" [(ngModel)]="typeReg" name="typeReg" value="vlasnik"/> Vlasnik
+        </label>
+        <label>
+          <input type="radio" [(ngModel)]="typeReg" name="typeReg" value="turista"/> Turista
+        </label>
+      </div>
+
+      <div class="form-group">
+        <output class="error">{{regMessErrButt}}</output>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Registrujte se</button>
+    </form>
+  </div>
+</div>

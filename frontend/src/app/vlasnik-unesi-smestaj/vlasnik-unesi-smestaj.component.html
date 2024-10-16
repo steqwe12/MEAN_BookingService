@@ -1,0 +1,36 @@
+<!-- Logout dugme -->
+<button class="btn btn-primary" (click)="logout()">Logout</button>
+<br>
+
+<!-- Forma za unos smeštaja -->
+<div class="smestaj-form">
+  <h3>Unesi novi smeštaj</h3>
+  <div class="form-group">
+    <label for="nazivSmestaja">Naziv:</label>
+    <input type="text" id="nazivSmestaja" [(ngModel)]="nazivSmestaja" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="opisSmestaja">Opis:</label>
+    <input type="text" id="opisSmestaja" [(ngModel)]="opisSmestaja" class="form-control">
+  </div>
+  <button class="btn btn-success" (click)="unesiNoviSmestaj()">Unesi novi smeštaj</button>
+</div>
+
+<br>
+<h3>Dodaj slike:</h3>
+<!-- Upload slike -->
+<div class="image-upload">
+  <input type="file" name="images" accept="image/jpeg, image/png, image/jpg" (change)="selectImages($event)" multiple class="form-control-file">
+</div>
+
+<br>
+
+<!-- Mapa -->
+<div id="map" class="map"></div>
+
+<br>
+
+<!-- Lokacija -->
+<div class="location-info">
+  {{grad}}, {{drzava}}
+</div>

@@ -1,0 +1,71 @@
+<!-- Logout dugme -->
+<button class="btn btn-primary" (click)="logout()">logout</button>
+<br>
+
+<!-- Forma za naziv i opis smeštaja -->
+<div class="form-group">
+  <label for="nazivSmestajaUpdate">Naziv smestaja:</label>
+  <input type="text" id="nazivSmestajaUpdate" [(ngModel)]="nazivSmestajaUpdate" class="form-control">
+  <span><h3>|  Drzava: {{ drzava }}, Grad: {{ grad }}</h3></span>
+</div>
+
+<div class="form-group">
+  <label for="opisSmestajaUpdate">Opis smestaja:</label>
+  <input type="text" id="opisSmestajaUpdate" [(ngModel)]="opisSmestajaUpdate" class="form-control">
+  <button class="btn btn-success" (click)="sacuvaj(nazivSmestajaUpdate,opisSmestajaUpdate)">Sacuvaj izmenu za naziv i opis</button>
+  <button class="btn btn-danger" (click)="izbrisiSmestaj()">IZBRISI SMESTAJ</button>
+</div>
+
+<br><br>
+
+<!-- Lokacija i unos slika -->
+<div class="form-group">
+  <div class="form-label">Lokacija:</div>
+  <div>
+    <input type="file" name="images" accept="image/jpeg, image/png, image/jpg" (change)="selectImages($event)" multiple class="form-control-file"/>
+    <button class="btn btn-primary" (click)="unesiNoveSlike()">Unesi nove slike</button>
+  </div>
+</div>
+
+<!-- Prikaz mape i slika -->
+<div class="map-and-carousel">
+  <div id="map" class="map"></div>
+
+  <div *ngIf="smestaj?.nazivSmestaja">
+    <!-- Kod za prikaz smeštaja -->
+  </div>
+
+  <div *ngIf="slikeFajlovi?.length > 0" class="carousel-container">
+    <!-- Carousel kod -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button *ngFor="let slika of slikeFajlovi; let i = index"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          [attr.data-bs-slide-to]="i"
+          [class.active]="i === 0"
+          [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item" *ngFor="let slika of slikeFajlovi; let i = index" [class.active]="i === 0">
+          <img [src]="sanitizedImageUrl(slika)" class="d-block w-100 carousel-image">
+          <!-- Delete button positioned in the center of the image -->
+          <button (click)="deleteImage(slika.name)"
+                  class="btn btn-danger carousel-delete-btn">
+            Delete
+          </button>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+

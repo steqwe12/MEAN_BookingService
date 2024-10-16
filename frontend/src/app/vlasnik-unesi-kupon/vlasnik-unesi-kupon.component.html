@@ -1,0 +1,57 @@
+<!-- Logout dugme -->
+<button class="btn btn-primary" (click)="logout()">Logout</button>
+<br>
+
+<!-- Forma za dodavanje novog kupona -->
+<div class="form-group">
+  <label for="fileInput">Dodaj novi kupon:</label>
+  <input type="file" id="fileInput" name="file" accept=".pdf,.doc,.docx" (change)="selectFile($event)" class="form-control-file" />
+  <span>pdf/doc/docx</span>
+</div>
+
+<div class="form-group">
+  <label for="nazivKupona">Naziv kupona:</label>
+  <input type="text" id="nazivKupona" [(ngModel)]="nazivKupona" class="form-control">
+</div>
+
+<div class="form-group">
+  <label for="opisKupona">Opis kupona:</label>
+  <input type="text" id="opisKupona" [(ngModel)]="opisKupona" class="form-control">
+  <button class="btn btn-success" (click)="dodajKupon()">Dodaj kupon</button>
+</div>
+
+<br>
+
+<!-- Prikaz svih kupona -->
+<div class="kupon-table">
+  <h3>Moji kuponi:</h3>
+  <table class="table">
+    <tr>
+      <th>Po naslovu kupona:<input type="text" [(ngModel)]="filterNaslov" (ngModelChange)="filter_kuponi()" class="form-control1"></th>
+      <th>Po opisu kupona:<input type="text" [(ngModel)]="filterOpis" (ngModelChange)="filter_kuponi()" class="form-control1"></th>
+      <th>Po imenu fajla:<input type="text" [(ngModel)]="filterImeFajla" (ngModelChange)="filter_kuponi()" class="form-control1"></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>Naslov <button class="btn btn-secondary" (click)="sortDesc0()">\/</button><button class="btn btn-secondary" (click)="sortAsc0()">/\</button></th>
+      <th>Opis <button class="btn btn-secondary" (click)="sortDesc1()">\/</button><button class="btn btn-secondary" (click)="sortAsc1()">/\</button></th>
+      <th>Ime fajla <button class="btn btn-secondary" (click)="sortDesc2()">\/</button><button class="btn btn-secondary" (click)="sortAsc2()">/\</button></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let kupon of kuponiMENJANI">
+      <td>{{ kupon.naslov }}</td>
+      <td>{{ kupon.opis }}</td>
+      <td>{{ kupon.fajlIme }}</td>
+      <td>
+        <button class="btn btn-info" (click)="preuzmiFajl(kupon.fajlIme)">Preuzmi fajl</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="obrisiKupon(kupon.korisnickoIme, kupon.fajlIme)">Obriši kupon</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+

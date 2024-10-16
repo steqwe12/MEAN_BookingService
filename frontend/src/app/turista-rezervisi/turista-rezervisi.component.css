@@ -1,0 +1,182 @@
+.mat-calendar-body-disabled {
+  background-color: rgba(255, 0, 0, 0.1); /* Svetlo crvena boja za onemogućene datume */
+  color: red;
+}
+
+.mat-calendar-body-enabled {
+  background-color: rgba(0, 255, 0, 0.1); /* Svetlo zelena boja za dozvoljene datume */
+}
+
+
+.error {
+  color: red;
+}
+.centered-content {
+
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px; /* Opciono: dodaje vrhni razmak */
+}
+img {
+max-width: 100%;
+height: auto;
+margin: 10px 0;
+}
+
+/* Osnovni stil za celu aplikaciju */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Stil za dugmad */
+
+button {
+  display: inline-block;
+  padding: 12px 24px; /* Dodao malo više paddinga za bolji izgled */
+  background-color: gray;
+  color: white;
+  border: 2px solid black; /* Dodata ivica */
+  border-radius: 28px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s; /* Dodaj transition za efekat */
+
+  /* Dodaj malo senke za efekat lebdenja */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px; /* Razmak između dugmadi */
+}
+
+button:hover {
+  background-color: #505050; /* Tamnija siva kada je dugme hover */
+  transform: translateY(-2px); /* Blago podizanje dugmeta */
+}
+
+button:active {
+  background-color: #404040; /* Još tamnija kada se pritisne */
+  transform: translateY(1px); /* Blago pomeranje na dole kada se pritisne */
+}
+
+
+/* Stil za tabele */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Stil za input polja */
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
+  width: 20%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,input[type="number"]:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* Stil za footer */
+
+footer {
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+}
+
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  width: 150px; /* Postavi širinu labela za poravnanje */
+  font-weight: bold; /* Opciono: dodaj podebljane labele */
+}
+
+.form-group input,
+.form-group textarea {
+  width: 25%; /* Širina za input i textarea */
+  padding: 10px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+.button-group button {
+  margin-right: 10px; /* Razmak između dugmadi */
+}
+
+
+
+.smestaj-details {
+  margin-bottom: 20px;
+}
+
+.map-and-carousel {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.map {
+  height: 55vh;
+  width: 40%;
+}
+
+.carousel-container {
+  width: 50%;
+}
+
+.carousel-image {
+  height: 50vh;
+  object-fit: cover;
+}
+
+/* Stil za dugme za brisanje slike */
+.carousel-delete-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Stil za carousel indikatore */
+.carousel-indicators button {
+  background-color: #ffffff;
+}
+
+.carousel-indicators .active {
+  background-color: #ffffff;
+}
+
+/* Stil za formu za datume */
+.date-form {
+  margin-bottom: 20px;
+}

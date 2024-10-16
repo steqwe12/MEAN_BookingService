@@ -1,0 +1,126 @@
+<button (click)="logout()">logout</button>
+<button (click)="promeniLozinku()">promena lozinke</button>
+<button (click)="promeniPodatke()">promena podataka</button>
+<br>
+
+<h2>Smestaji:</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Po nazivu smestaja:
+        <input type="text" [(ngModel)]="filterNazSmest" (ngModelChange)="filter_sviSmest_sa_slikom()">
+      </th>
+      <th>Po opisu smestaja:
+        <input type="text" [(ngModel)]="filterOpisSmest" (ngModelChange)="filter_sviSmest_sa_slikom()">
+      </th>
+      <th>Po drzavi:
+        <input type="text" [(ngModel)]="filterDrz" (ngModelChange)="filter_sviSmest_sa_slikom()">
+      </th>
+      <th>Po gradu:
+        <input type="text" [(ngModel)]="filterGrad" (ngModelChange)="filter_sviSmest_sa_slikom()">
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>naziv smestaja
+        <button (click)="sortDesc0()">\/</button>
+        <button (click)="sortAsc0()">/\</button>
+      </th>
+      <th>opis smestaja
+        <button (click)="sortDesc1()">\/</button>
+        <button (click)="sortAsc1()">/\</button>
+      </th>
+      <th>drzava
+        <button (click)="sortDesc2()">\/</button>
+        <button (click)="sortAsc2()">/\</button>
+      </th>
+      <th>grad
+        <button (click)="sortDesc3()">\/</button>
+        <button (click)="sortAsc3()">/\</button>
+      </th>
+      <th>slika</th>
+      <th>forma za rezervaciju</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let n of sviSmestajiSaSlikomMENJANI">
+      <td>{{n.smestaj.nazivSmestaja}}</td>
+      <td>{{n.smestaj.opisSmestaja}}</td>
+      <td>{{n.smestaj.drzava}}</td>
+      <td>{{n.smestaj.grad}}</td>
+      <td>
+        <img [src]="sanitizedImageUrl(n.slika)" alt="Smestaj" class="resized-image" (click)="idiNaFormuZaRezervaciju(n.smestaj.korisnickoIme,n.smestaj.nazivSmestaja)">
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="idiNaFormuZaRezervaciju(n.smestaj.korisnickoIme,n.smestaj.nazivSmestaja)">rezervacija</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br/><br/>
+
+<h2>Moje rezervacije:</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Po nazivu smestaja:
+        <input type="text" [(ngModel)]="filterNSmest" (ngModelChange)="filter_rezerv_smestaji()">
+      </th>
+      <th>Po drzavi:
+        <input type="text" [(ngModel)]="filterD" (ngModelChange)="filter_rezerv_smestaji()">
+      </th>
+      <th>Po gradu:
+        <input type="text" [(ngModel)]="filterG" (ngModelChange)="filter_rezerv_smestaji()">
+      </th>
+      <th>Po datumu od:
+        <input type="text" [(ngModel)]="filterDatumOd" (ngModelChange)="filter_rezerv_smestaji()">
+      </th>
+      <th>Po datumu do:
+        <input type="text" [(ngModel)]="filterDatumDo" (ngModelChange)="filter_rezerv_smestaji()">
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>naziv smestaja
+        <button (click)="sortDesc0_()">\/</button>
+        <button (click)="sortAsc0_()">/\</button>
+      </th>
+      <th>drzava
+        <button (click)="sortDesc1_()">\/</button>
+        <button (click)="sortAsc1_()">/\</button>
+      </th>
+      <th>grad
+        <button (click)="sortDesc2_()">\/</button>
+        <button (click)="sortAsc2_()">/\</button>
+      </th>
+      <th>datum od
+        <button (click)="sortDesc3_()">\/</button>
+        <button (click)="sortAsc3_()">/\</button>
+      </th>
+      <th>datum do
+        <button (click)="sortDesc4_()">\/</button>
+        <button (click)="sortAsc4_()">/\</button>
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let n of korisnikoveRezervacijeISmestajMENJANI">
+      <td>{{n.smestaj.nazivSmestaja}}</td>
+      <td>{{n.smestaj.drzava}}</td>
+      <td>{{n.smestaj.grad}}</td>
+      <td>{{n.rezervacija.datumOd}}</td>
+      <td>{{n.rezervacija.datumDo}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="idiNaDetaljeRezervacije(n.smestaj.nazivSmestaja,n.rezervacija.datumOd,n.rezervacija.datumDo,n.rezervacija.vlasnik)">detalji/preporuke/kuponi</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="otkaziRezervaciju(n.smestaj.nazivSmestaja,n.rezervacija.datumOd,n.rezervacija.datumDo,n.rezervacija.vlasnik)">otkazi</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,106 @@
+<button (click)="logout()">logout</button>
+<br>
+<h2>Kuponi:</h2>
+<table class="table">
+  <tr>
+    <td>Naslov kupona</td>
+    <td>Opis kupona</td>
+    <td>Ime fajla</td>
+    <td></td>
+  </tr>
+  <tr *ngFor="let kupon of paginatedCoupons">
+    <td>{{ kupon.naslov }}</td>
+    <td>{{ kupon.opis }}</td>
+    <td>{{ kupon.fajlIme }}</td>
+    <td>
+      <button (click)="preuzmiFajl(kupon.fajlIme)">Preuzmi fajl</button>
+    </td>
+  </tr>
+</table>
+
+<div>
+  <button (click)="prevPage()" [disabled]="currentPage === 1">Prethodna</button>
+  <button (click)="nextPage()" [disabled]="currentPage === maxPage">Sledeća</button>
+</div>
+
+<br><br><br><h3>
+Kontakt: {{vlasnik.email}}
+<br>
+Izaberite preporuku:
+<select [(ngModel)]="selectedPreporukaNaziv" (ngModelChange)="pomocInitMapPlusSlike()">
+  <option *ngFor="let preporuka of preporuke" [value]="preporuka.nazivPreporuke">
+    {{ preporuka.nazivPreporuke }}
+  </option>
+</select>
+<br>
+Opis preporuke: {{selectedPreporuka.opisPreporuke}}
+<br>
+Tip: {{selectedPreporuka.tip}}
+<br>
+Lokacija :</h3>
+<div id="map" style="height: 55vh; width: 40%;"></div>
+<br/>
+
+<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+
+  <!-- Prvi carousel - Slike preporuka -->
+  <div *ngIf="slikePrepFajlovi?.length > 0" style="width: 45%;">
+    <h3>Slike preporuka:</h3> <!-- Dodato -->
+    <!-- Carousel kod -->
+    <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button *ngFor="let slika of slikePrepFajlovi; let i = index"
+          type="button"
+          data-bs-target="#carouselExampleIndicators1"
+          [attr.data-bs-slide-to]="i"
+          [class.active]="i === 0"
+          [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item position-relative" *ngFor="let slika of slikePrepFajlovi; let i = index" [class.active]="i === 0">
+          <img [src]="sanitizedImageUrl(slika)" style="height: 45vh; object-fit: cover;" class="d-block w-100">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Drugi carousel - Slike smeštaja -->
+  <div *ngIf="slikeFajlovi?.length > 0" style="width: 45%;">
+    <h3>Slike smeštaja:</h3> <!-- Dodato -->
+    <!-- Carousel kod -->
+    <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button *ngFor="let slika of slikeFajlovi; let i = index"
+          type="button"
+          data-bs-target="#carouselExampleIndicators2"
+          [attr.data-bs-slide-to]="i"
+          [class.active]="i === 0"
+          [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item position-relative" *ngFor="let slika of slikeFajlovi; let i = index" [class.active]="i === 0">
+          <img [src]="sanitizedImageUrl(slika)" style="height: 45vh; object-fit: cover;" class="d-block w-100">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+

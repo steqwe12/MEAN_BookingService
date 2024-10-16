@@ -1,0 +1,72 @@
+<!-- Logout dugme -->
+<button class="btn btn-primary" (click)="logout()">Logout</button>
+<br>
+
+<!-- Pregled preporuka -->
+<div class="preporuka-table">
+  <h3>Pregled mojih preporuka:</h3>
+  <table class="table">
+    <tr>
+      <th>Po nazivu smestaja:<input type="text" [(ngModel)]="filterNazSmest" (ngModelChange)="filter_preporuke()" class="form-control"></th>
+      <th>Po nazivu preporuke:<input type="text" [(ngModel)]="filterNazPrep" (ngModelChange)="filter_preporuke()" class="form-control"></th>
+      <th>Po opisu preporuke:<input type="text" [(ngModel)]="filterOpisPrep" (ngModelChange)="filter_preporuke()" class="form-control"></th>
+      <th>Po tipu preporuke:<input type="text" [(ngModel)]="filterTipPrep" (ngModelChange)="filter_preporuke()" class="form-control"></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>Naziv smestaja <button class="btn btn-secondary" (click)="sortDesc0()">\/</button><button class="btn btn-secondary" (click)="sortAsc0()">/\</button></th>
+      <th>Naziv preporuke <button class="btn btn-secondary" (click)="sortDesc1()">\/</button><button class="btn btn-secondary" (click)="sortAsc1()">/\</button></th>
+      <th>Opis preporuke <button class="btn btn-secondary" (click)="sortDesc2()">\/</button><button class="btn btn-secondary" (click)="sortAsc2()">/\</button></th>
+      <th>Tip preporuke <button class="btn btn-secondary" (click)="sortDesc3()">\/</button><button class="btn btn-secondary" (click)="sortAsc3()">/\</button></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let preporuka of preporukeMENJANE">
+      <td>{{ preporuka.nazivSmestaja }}</td>
+      <td>{{ preporuka.nazivPreporuke }}</td>
+      <td>{{ preporuka.opisPreporuke }}</td>
+      <td>{{ preporuka.tip }}</td>
+      <td>
+        <button class="btn btn-info" (click)="detaljanPrikazPreporuke(preporuka.nazivSmestaja, preporuka.nazivPreporuke)">Detaljan prikaz</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<br><br><br>
+
+<!-- Forma za dodavanje preporuka -->
+<div class="add-preporuka-form">
+  <h3>Dodaj preporuku:</h3>
+  <button class="btn btn-success" (click)="dodajPreporuku()">Dodaj preporuku</button>
+  <br>
+  <div class="form-group">
+    <label for="nazivPreporuke">Naziv preporuke:</label>
+    <input type="text" id="nazivPreporuke" [(ngModel)]="nazivPreporuke" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="opisPreporuke">Opis preporuke:</label>
+    <textarea id="opisPreporuke" [(ngModel)]="opisPreporuke" class="form-control custom-textarea"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="tipPreporuke">Tip preporuke:</label>
+    <input type="text" id="tipPreporuke" [(ngModel)]="tipPreporuke" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="smestajSelect">Izaberite za koji smestaj zelite da napravite preporuku:</label>
+    <select id="smestajSelect" [(ngModel)]="selectedSmestajNaziv" (ngModelChange)="pomocInitializeMap()" class="form-control">
+      <option *ngFor="let smestaj of smestaji" [value]="smestaj.nazivSmestaja">
+        {{ smestaj.nazivSmestaja }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Dodaj slike:</label>
+    <input type="file" name="images" accept="image/jpeg, image/png, image/jpg" (change)="selectImages($event)" multiple class="form-control-file" />
+  </div>
+  <div class="form-group">
+    <label>Lokacija:</label>
+    <div id="map" style="height: 55vh; width: 40%;"></div>
+  </div>
+</div>

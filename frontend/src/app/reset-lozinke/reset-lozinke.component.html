@@ -1,0 +1,18 @@
+<div style="text-align: center; margin-top: 20px;">
+  <h2>Resetovanje lozinke</h2>
+
+  <div style="max-width: 400px; margin: auto;">
+    <form (ngSubmit)="resetuj()">
+      <div class="form-group">
+        <label for="email">Unesite e-mail adresu:</label>
+        <input id="email" type="email" [(ngModel)]="email" name="email" class="form-control" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Resetuj lozinku</button>
+    </form>
+
+    <p class="info">
+      Ako korisnik sa unetom e-mail adresom postoji, resetovana lozinka će biti poslata na e-mail.
+    </p>
+  </div>
+</div>

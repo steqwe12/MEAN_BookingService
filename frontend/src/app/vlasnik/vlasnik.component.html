@@ -1,0 +1,126 @@
+<!-- Dugmadi za akcije -->
+<div class="button-group">
+  <button class="btn" (click)="logout()">logout</button>
+  <button class="btn" (click)="promeniLozinku()">promena lozinke</button>
+  <button class="btn" (click)="promeniPodatke()">promena podataka</button>
+</div>
+
+<div class="button-group">
+  <button class="btn" (click)="unesiNoviSmestaj()">Idi na formu za unos novog smestaja</button>
+  <button class="btn" (click)="pregledSvojihKupona()">Idi na formu za pregled i unos novih kupona</button>
+  <button class="btn" (click)="pregledSvojihPreporuka()">Idi na formu za pregled i unos novih preporuka za smestaje</button>
+</div>
+
+<br/><br/>
+
+<!-- Pregled mojih smeštaja -->
+<div class="table-container">
+  <h3><p>Pregled mojih smestaja:</p ></h3>
+  <table class="table">
+    <tr>
+      <th>Po nazivu smestaja:
+        <input type="text" [(ngModel)]="filterNazSmest" (ngModelChange)="filter_smestaji()" class="filter-input">
+      </th>
+      <th>Po opisu smestaja:
+        <input type="text" [(ngModel)]="filterOpisSmest" (ngModelChange)="filter_smestaji()" class="filter-input">
+      </th>
+      <th>Po drzavi:
+        <input type="text" [(ngModel)]="filterDrzava" (ngModelChange)="filter_smestaji()" class="filter-input">
+      </th>
+      <th>Po gradu:
+        <input type="text" [(ngModel)]="filterGrad" (ngModelChange)="filter_smestaji()" class="filter-input">
+      </th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>naziv smestaja
+        <button class="sort-btn" (click)="sortDesc0()">\/</button>
+        <button class="sort-btn" (click)="sortAsc0()">/\</button>
+      </th>
+      <th>opis smestaja
+        <button class="sort-btn" (click)="sortDesc1()">\/</button>
+        <button class="sort-btn" (click)="sortAsc1()">/\</button>
+      </th>
+      <th>drzava
+        <button class="sort-btn" (click)="sortDesc2()">\/</button>
+        <button class="sort-btn" (click)="sortAsc2()">/\</button>
+      </th>
+      <th>grad
+        <button class="sort-btn" (click)="sortDesc3()">\/</button>
+        <button class="sort-btn" (click)="sortAsc3()">/\</button>
+      </th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let smestaj of smestajiMENJANI">
+      <td>{{ smestaj.nazivSmestaja }}</td>
+      <td>{{ smestaj.opisSmestaja }}</td>
+      <td>{{ smestaj.drzava }}</td>
+      <td>{{ smestaj.grad }}</td>
+      <td>
+        <button class="btn" (click)="detaljanPrikazSmestaja(smestaj.nazivSmestaja)">Detaljan prikaz</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<br>
+
+<!-- Pregled rezervacija za moje smeštaje -->
+<div class="table-container">
+  <h3><p>Pregled rezervacija za moje smestaje:</p></h3>
+  <table class="table">
+    <tr>
+      <th>Po turisti:
+        <input type="text" [(ngModel)]="filterTur" (ngModelChange)="filter_rezervacije()" class="filter-input">
+      </th>
+      <th>Po datumu od:
+        <input type="text" [(ngModel)]="filterDatumOd" (ngModelChange)="filter_rezervacije()" class="filter-input">
+      </th>
+      <th>Po datumu do:
+        <input type="text" [(ngModel)]="filterDatumDo" (ngModelChange)="filter_rezervacije()" class="filter-input">
+      </th>
+      <th>Po nazivu smestaja:
+        <input type="text" [(ngModel)]="filterSmest" (ngModelChange)="filter_rezervacije()" class="filter-input">
+      </th>
+      <th>Po emailu:
+        <input type="text" [(ngModel)]="filterEmail" (ngModelChange)="filter_rezervacije()" class="filter-input">
+      </th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>turista
+        <button class="sort-btn" (click)="sortDesc0_()">\/</button>
+        <button class="sort-btn" (click)="sortAsc0_()">/\</button>
+      </th>
+      <th>datum od
+        <button class="sort-btn" (click)="sortDesc1_()">\/</button>
+        <button class="sort-btn" (click)="sortAsc1_()">/\</button>
+      </th>
+      <th>datum do
+        <button class="sort-btn" (click)="sortDesc2_()">\/</button>
+        <button class="sort-btn" (click)="sortAsc2_()">/\</button>
+      </th>
+      <th>naziv smestaja
+        <button class="sort-btn" (click)="sortDesc3_()">\/</button>
+        <button class="sort-btn" (click)="sortAsc3_()">/\</button>
+      </th>
+      <th>email turiste
+        <button class="sort-btn" (click)="sortDesc4_()">\/</button>
+        <button class="sort-btn" (click)="sortAsc4_()">/\</button>
+      </th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let rez of rezervacijeTuristaEmailMENJANI">
+      <td>{{ rez.rezervacija.turista }}</td>
+      <td>{{ rez.rezervacija.datumOd }}</td>
+      <td>{{ rez.rezervacija.datumDo }}</td>
+      <td>{{ rez.rezervacija.nazivSmestaja }}</td>
+      <td>{{ rez.email }}</td>
+      <td>
+        <button class="btn btn-danger" (click)="otkaziRezervaciju(rez.rezervacija)">Otkazi rezervaciju</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
